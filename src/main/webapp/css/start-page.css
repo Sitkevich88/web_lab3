@@ -1,0 +1,98 @@
+.theme-light{
+    --color-background: #edeef0;
+    --color-header-footer: #125e5e;
+    --color-left-container: #125e5e;
+    --color-left-container-border: #125e5e;
+    --color-form: #89f3f3;
+    --color-table-border: #000000;
+    --color-table-header-background: #83a4e5;
+    --color-raw-odd: #daf5f5;
+    --color-raw-even: #89f3f3;
+    --color-xbuttons: #2b8a8a;
+    --color-button-submit: #2633CB;
+    --color-time: #000000;
+}
+.theme-dark{
+    --color-background: #181818;
+    --color-header-footer: #212121;
+    --color-left-container: #212121;
+    --color-left-container-border: #ffffff;
+    --color-form: #676767;
+    --color-table-border: #000000;
+    --color-table-header-background: #2b8a8a;
+    --color-raw-odd: #daf5f5;
+    --color-raw-even: #a9f3f3;
+    --color-xbuttons: #2b8a8a;
+    --color-button-submit: indigo;
+    --color-time: #FFFFFF;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: var(--color-background);
+}
+.wrapper{
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.main{
+    padding: 30px;
+    flex: 1 1 auto;
+}
+.content-wrapper{
+    justify-content: space-between;
+}
+.button-form{
+    text-align: center;
+}
+.header-or-footer{
+    display: block;
+    width: 100%;
+    margin: 0 0 0 0;
+    color: #ffffff;
+    background-color: var(--color-header-footer);
+}
+.header{
+    letter-spacing: 2px;
+    padding: 10px 0 10px 0;
+    text-align: center;
+    font-style: italic;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+}
+.footer{
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    height: 40px;
+    padding: 0;
+    bottom: 0;
+}
+p.header{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+.link{
+    padding: 0 25px;
+    box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+    border-radius: 6px;
+    border-width: 0;
+    background-color: #405cf5;
+    text-decoration-line: none !important;
+    color: #FFF !important;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+    font-size: 30px;
+    line-height: 4;
+    height: 44px;
+}
+.link:focus {
+    box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+}
+.link:hover{
+    background-color: #0d3c61;
+}

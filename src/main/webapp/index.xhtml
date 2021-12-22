@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Web project #3</title>
+    <link rel="icon" href="icon-programmer-25.jpg"/>
+    <!--<h:outputStylesheet name="primeflex/primeflex.css" />-->
+    <!--<link rel="stylesheet" type="text/css" href="https://unpkg.com/primeflex@3.1.0/primeflex.css"/>-->
+    <!-- Development version: -->
+    <!--<script>document.write('<script src="/myJavascript.js?dev=' + Math.floor(Math.random() * 100) + '"\><\/script>');</script>-->
+    <link rel="stylesheet" type="text/css" href="css/start-page.css?version=1"/>
+    <link rel="stylesheet" type="text/css" href="css/clock.css?version=1"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <header class="header-or-footer header">
+        <p>Ситкевич Валерий Андреевич P3214 вариант 2952</p>
+    </header>
+    <main class="main">
+        <div class="content-wrapper">
+            <article class="clock">
+                <div class="hours-container">
+                    <div class="hours"></div>
+                </div>
+                <div class="minutes-container">
+                    <div class="minutes"></div>
+                </div>
+                <div class="seconds-container">
+                    <div class="seconds"></div>
+                </div>
+                <div class="date"></div>
+            </article>
+            <br/>
+            <h:form styleClass="button-form">
+                <h:commandLink value = "На главную страницу" action = "toMain" styleClass="link"/>
+            </h:form>
+        </div>
+    </main>
+    <footer class="header-or-footer footer"></footer>
+</div>
+<script src="js/clock.js"></script>
+<script src="js/themes-changer.js"></script>
+</body>
+</html>

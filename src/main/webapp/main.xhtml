@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Web project #3</title>
+    <link rel="icon" href="icon-programmer-25.jpg"/>
+    <link rel="stylesheet" type="text/css" href="css/style-with-themes.css?version=2"/>
+</h:head>
+<body>
+<div class="wrapper">
+    <header class="header-or-footer header">
+        <p>Ситкевич Валерий Андреевич P3214 вариант 2952</p>
+    </header>
+    <main class="main">
+        <div class="grid-container">
+            <div class="panel leftpane">
+                <div id="leftInfo">
+                    <canvas id="graph" class="image" width="250" height="250">
+                        Your browser does not support the HTML5 canvas tag.</canvas>
+                    <br/>
+                    <div id="extended_form">
+                        <h:form styleClass="form" id="form" autocomplete="off" >
+                            <h:outputLabel for="x">X: </h:outputLabel>
+                            <h:selectOneMenu id="x" value="#{parameters.x}" required="true" requiredMessage="Нужно выбрать X" validatorMessage="X должно быть в диапазоне от -2 до 2">
+                                <f:selectItem itemValue = "-2" itemLabel = "-2" />
+                                <f:selectItem itemValue = "-1.5" itemLabel = "-1.5" />
+                                <f:selectItem itemValue = "-1" itemLabel = "-1" />
+                                <f:selectItem itemValue = "-0.5" itemLabel = "-0.5" />
+                                <f:selectItem itemValue = "0" itemLabel = "0" />
+                                <f:selectItem itemValue = "0.5" itemLabel = "0.5" />
+                                <f:selectItem itemValue = "1" itemLabel = "1" />
+                                <f:selectItem itemValue = "1.5" itemLabel = "1.5" />
+                                <f:selectItem itemValue = "2" itemLabel = "2" />
+                                <f:validateLength minimum="1" maximum="4" />
+                                <f:validateDoubleRange minimum="-2" maximum="2"/>
+                            </h:selectOneMenu>
+                            <br/><br/>
+                            <h:outputLabel for="y">Y: </h:outputLabel>
+                            <h:inputText id="y" value="#{parameters.y}" styleClass="check_me" required="true" size="3" requiredMessage="Нужно выбрать Y" validatorMessage="Y должно быть в диапазоне от 3 до 5 и коротким">
+                                <f:validateLength minimum="1" maximum="6" />
+                                <f:validateDoubleRange minimum="-5" maximum="3"/>
+                                <!--<f:ajax event="change" execute="y" render="@form"/>-->
+                                <!--<f:validator validatorId="commonValidator"/>-->
+                            </h:inputText>
+                            <br/><br/>
+                            <div class="r-container">
+                                <h:outputLabel for="r1">R: </h:outputLabel>
+                                <p:commandLink type="button" onclick="setR(1)" class="button-input" styleClass="link round" id="r1" action="click focus" actionListener="#{parameters.toggle}" value="1">
+                                </p:commandLink>
+                                <p:commandLink type="button" onclick="setR(2)" class="button-input" styleClass="link round" id="r2" action="click focus" actionListener="#{parameters.toggle}" value="2">
+                                </p:commandLink>
+                                <p:commandLink type="button" onclick="setR(3)" class="button-input" styleClass="link round" id="r3" action="click focus" actionListener="#{parameters.toggle}" value="3">
+                                </p:commandLink>
+                                <p:commandLink type="button" onclick="setR(4)" class="button-input" styleClass="link round" id="r4" action="click focus" actionListener="#{parameters.toggle}" value="4">
+                                </p:commandLink>
+                                <p:commandLink type="button" onclick="setR(5)" class="button-input" styleClass="link round" id="r5" action="click focus" actionListener="#{parameters.toggle}" value="5">
+                                </p:commandLink>
+                                <p:inputText id="r" required="true" style="visibility: hidden" value="#{parameters.r}" requiredMessage="Нужно выбрать R" validatorMessage="R должно быть равно целому числу от 1 до 5">
+                                    <f:validateLongRange minimum="1" maximum="5"/>
+                                </p:inputText>
+                            </div>
+                            <br/>
+                            <div class="errors" id="errors">
+                                <h:message class="error" for="x"/>
+                                <h:message class="error" for="y"/>
+                                <h:message class="error" for="r"/>
+                                <span style="visibility: hidden" id="r-error" class="error">Сначала надо ввести R</span>
+                            </div>
+                            <br/>
+                            <h:commandButton id="submit-button" value="Отправить" styleClass="link add_margin" action="#{parameters.submit}">
+                                <f:ajax onevent="update" event="click" execute="@form" render="myTable @form"/>
+                            </h:commandButton>
+                            <h:commandButton id="remove-button" value="Удалить всё" styleClass="link dangerous add_margin" action="#{parameters.clear}">
+                                <f:ajax onevent="update" event="click" render="myTable"/>
+                            </h:commandButton>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+            <div class="panel rightpane">
+                <h:dataTable value = "#{databaseBean.select()}" var = "c" id="myTable"
+                             styleClass = "authorTable"
+                             headerClass = "authorTableHeader"
+                             rowClasses = "authorTableOddRow,authorTableEvenRow">
+
+                    <h:column><f:facet name = "header">X</f:facet>
+                        #{c.x}
+                    </h:column>
+
+                    <h:column><f:facet name = "header">Y</f:facet>
+                        #{c.y}
+                    </h:column>
+
+                    <h:column><f:facet name = "header">R</f:facet>
+                        #{c.r}
+                    </h:column>
+
+                    <h:column><f:facet name = "header">Результат</f:facet>
+                        #{c.res}
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </div>
+    </main>
+    <h:form>
+        <h:commandLink value = "&#8249;"  styleClass="link round button-go-back" action = "toIndex" />
+    </h:form>
+    <footer class="header-or-footer footer">
+
+    </footer>
+</div>
+<script src="js/themes-changer.js"></script>
+<script src="js/canvasManipulations.js?version=2"></script>
+<script src="js/input_validation_and_submit.js"></script>
+</body>
+</html>

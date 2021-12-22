@@ -63,7 +63,7 @@
                                 </p:commandLink>
                                 <p:commandLink type="button" onclick="setR(5)" class="button-input" styleClass="link round" id="r5" action="click focus" actionListener="#{parameters.toggle}" value="5">
                                 </p:commandLink>
-                                <p:inputText id="r" required="true" style="visibility: hidden" value="#{parameters.r}" requiredMessage="Нужно выбрать R" validatorMessage="R должно быть равно целому числу от 1 до 5">
+                                <p:inputText id="r" required="true" style="visibility: hidden; display: none;" value="#{parameters.r}" requiredMessage="Нужно выбрать R" validatorMessage="R должно быть равно целому числу от 1 до 5">
                                     <f:validateLongRange minimum="1" maximum="5"/>
                                 </p:inputText>
                             </div>
@@ -74,7 +74,6 @@
                                 <h:message class="error" for="r"/>
                                 <span style="visibility: hidden" id="r-error" class="error">Сначала надо ввести R</span>
                             </div>
-                            <br/>
                             <h:commandButton id="submit-button" value="Отправить" styleClass="link add_margin" action="#{parameters.submit}">
                                 <f:ajax onevent="update" event="click" execute="@form" render="myTable @form"/>
                             </h:commandButton>

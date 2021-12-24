@@ -8,21 +8,15 @@ var globalX;
 var globalR;
 var dots = new Array();
 
-
-/*function showRError(){
-    $("#r-error").css({"visibility":"visible"});
-}
-function hideRError(){
-    $("#r-error").css({"visibility":"hidden"});
-}*/
-
 //если r уже установлено, то функция нажимает на нужную кнопку x, вводит значение в поле y, сохраняет x в globalX
 function setCoordinates(x, y) {
     if (isRSet()){
         setX(x);
         setY(y);
+        return true;
     } else {
         $('#r-error').css({"visibility":"visible"});
+        return false;
     }
 }
 //установка R
@@ -62,7 +56,6 @@ function setX(x) {
         }
     }
     document.getElementById("form:x").value = res;
-    /*$("#form:x").val(buttonIndex);*/
 }
 //проверка, выбрано ли r
 function isRSet(){
@@ -72,19 +65,17 @@ function isRSet(){
     }
     return false;
 }
+//функция возвращает сохраненное значение R
 function getSavedR(){
     return document.getElementById("form:r").value;
 }
+//восстанавливает R
 function reviveR(){
     if (typeof (getSavedR())!="undefined"){
         setR(getSavedR());
     }
 }
-//при перезагрузке страници отрисовка canvas занаво
-/*window.onload = function() {
-    redraw();
-}*/
-
+//перерисовка таблицы, canvas
 function update(){
     reviveR();
     dots = new Array();
@@ -92,7 +83,7 @@ function update(){
     redraw();
     $('#r-error').css({"visibility":"hidden"});
 }
-//при изменение параметра r изменяется размер фигуры на координатной плоскости
+//отрисовка фигуры при загрузке страницы
 $(document).ready(function () {
     update();
 })
@@ -133,7 +124,8 @@ function convertYtoUnits(y1){
 //при клике по canvas определяем координаты и устанавливаем
 cv.addEventListener('click', function(evt) {
     var mousePos = getMousePos(cv, evt);
-    setCoordinates(mousePos.x, mousePos.y);
+    let isSet = setCoordinates(mousePos.x, mousePos.y);
+    if (isSet){document.getElementById('form:submit-button').click();}
 }, false);
 //отрисовка всего
 function redraw(){

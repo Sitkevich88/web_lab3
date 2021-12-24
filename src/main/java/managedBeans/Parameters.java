@@ -106,9 +106,9 @@ public class Parameters implements Serializable {
         }
 
         if (y>=0){
-            if (x>=0 && y<(-2*x+r)){
+            if (x>=0 && y<=(-2*x+r)){
                 return true;
-            } else if (x<0 && x>=-r && y<=r/2){
+            } else if (x<=0 && x>=(-r) && y<=(Double.valueOf(r) / 2.0)){
                 return true;
             }
         }else {
